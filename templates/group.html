@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item active">Groups</li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if group_data %}
+        {% for key, values in group_data.items %}
+            <div class="col-sm-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        {{key}}
+                    </a>
+                    {% for inv_name in values %}
+                        <a href="#" class="list-group-item list-group-item-action">{{inv_name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

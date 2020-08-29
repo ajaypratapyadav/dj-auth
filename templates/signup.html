@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customCSS %}
+<link href="{% static 'assets/css/auth.css' %}" rel="stylesheet">
+{% endblock customCSS %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="auth-content">
+        <div class="card">
+            <div class="card-body text-center">
+                <div class="mb-4">
+                    <img class="brand" src="{% static 'assets/img/bootstraper-logo.png' %}" alt="bootstraper logo">
+                </div>
+                <h6 class="mb-4 text-muted">Create a new account</h6>
+                {% if messages %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% include 'includes/form.html' %}
+                    <button class="btn btn-primary shadow-2 mb-4">Register</button>
+                </form>
+                <p class="mb-0 text-muted">Allready have an account? <a href="login.html">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block customJS %}
+<script src="{% static 'assets/vendor/bootstrap4/js/bootstrap.min.js' %}"></script>
+{% endblock customJS %}
